@@ -95,7 +95,8 @@
                     losses++;
                     console.log(losses)
                     stop();
-                    $("#answers").append(`<h1>Incorrect the answer was ${compChoice[0].A}</h1>`)
+                    $("button").attr("disabled", true)
+                    $("#answers").append(`<h1>The answer was ${compChoice[0].A}</h1>`)
                     setTimeout(nextQuestion, 3000);
                 }
                 if (number === 0 && runs === 3){
@@ -118,7 +119,7 @@
             $(document).on("click", ".restart", function (event) {
                 event.preventDefault();
                 questions =
-                [{ Q: "What color is the ocean", options: ["Red", "Blue", "Green", "Blue"], A: "Blue" }, { Q: "Spinach is high in which mineral?", options: ["Fiber", "Potassium", "Iron", "Calcium"], A: "Iron" }, { Q: "Who was the first president of the US", options: ["George Washington", "Thomas Jefferson", "Abe Lincoln", "James Madison"], A: "George Washington" }, { Q: "Which fictional city is the home of Batman?", options: ["Grantham City", "Washington DC", "NYC", "Gotham City"], A: "Gotham City" }, { Q: "Which type of dog has breeds called Scottish, Welsh and Irish?", options: ["Rotweiler", "Terrier", "Poodle", "German Shephard"], A: "Terrier" }, { Q: "Babe Ruth is associated with which sport?", options: ["Baseball", "Basketball", "Football", "Hockey"], A: "Baseball" }]
+                [{ Q: "What color is the sky?", options: ["Red", "Blue", "Green", "Blue"], A: "Blue" }, { Q: "Spinach is high in which mineral?", options: ["Fiber", "Potassium", "Iron", "Calcium"], A: "Iron" }, { Q: "Who was the first president of the US?", options: ["George Washington", "Thomas Jefferson", "Abe Lincoln", "James Madison"], A: "George Washington" }, { Q: "Which fictional city is the home of Batman?", options: ["Grantham City", "Washington DC", "NYC", "Gotham City"], A: "Gotham City" }, { Q: "Which type of dog has breeds called Scottish, Welsh and Irish?", options: ["Rotweiler", "Terrier", "Poodle", "German Shephard"], A: "Terrier" }, { Q: "Babe Ruth is associated with which sport?", options: ["Baseball", "Basketball", "Football", "Hockey"], A: "Baseball" }]
                 compChoice = [];
                 userChoice = [];
                 number = 15;
@@ -160,14 +161,14 @@
                 if (userChoice[0] !== compChoice[0].A && runs < 3) {
                     losses++
                     clearInterval(intervalId);
-                    currentButton.append(`<h1>Incorrect the answer was ${userChoice[0]}</h1>`)
+                    currentButton.append(`<h1>Incorrect the answer was ${compChoice[0].A}</h1>`)
                     setTimeout(nextQuestion, 3000);
                 }
                 while (runs === 3) {
-                    if (userChoice[0] !== compChoice[0].A) {
+                    if (userChoice[0] !== compChoice[0].A  && number !==0) {
                         losses++
                         clearInterval(intervalId);
-                        currentButton.append(`<h1>Incorrect the answer was ${userChoice[0]}</h1>`)
+                        currentButton.append(`<h1>Incorrect the answer was ${compChoice[0].A}</h1>`)
                     }
                     if (userChoice[0] === compChoice[0].A) {
                         wins++
@@ -175,19 +176,12 @@
                         currentButton.append(`<h1>Correct</h1>`)
                     }
                     if (number === 0) {
+                        losses++
                         clearInterval(intervalId);
-                        $("#answers").append(`<h1>Incorrect the answer was ${userChoice[0]}</h1>`)
+                        $("#answers").append(`<h1>The answer was ${compChoice[0].A}</h1>`)
+                        $("button").attr("disabled", true)
                     }
                     setTimeout(showScore, 3000)
-                    // clearInterval(intervalId);
-                    // $("#counter").html('')
-                    // $("#answers").html('')
-                    // $("#question").html('')
-                    // console.log(wins)
-                    // console.log(losses)
-                    // $("#Score").html(`<h2> you answered ${wins} correct and ${losses} incorrect</h2>`)
-                    // $("#start").attr({ disabled: false, class: "restart" })
-                    // $("#start").html("restart").show();
                     break
                 }
             }
