@@ -95,7 +95,8 @@
                     losses++;
                     console.log(losses)
                     stop();
-                    setTimeout(nextQuestion, 2000);
+                    $("#answers").append(`<h1>Incorrect the answer was ${compChoice[0].A}</h1>`)
+                    setTimeout(nextQuestion, 3000);
                 }
                 if (number === 0 && runs === 3){
                     checkWin();
@@ -153,27 +154,46 @@
                 if (userChoice[0] === compChoice[0].A && runs < 3) {
                     wins++
                     clearInterval(intervalId);
-                    currentButton
-                    setTimeout(nextQuestion, 2000);
+                    currentButton.append(`<h1>Correct</h1>`)
+                    setTimeout(nextQuestion, 3000);
                 }
                 if (userChoice[0] !== compChoice[0].A && runs < 3) {
                     losses++
                     clearInterval(intervalId);
-                    setTimeout(nextQuestion, 2000);
+                    currentButton.append(`<h1>Incorrect the answer was ${userChoice[0]}</h1>`)
+                    setTimeout(nextQuestion, 3000);
                 }
                 while (runs === 3) {
                     if (userChoice[0] !== compChoice[0].A) {
                         losses++
                         clearInterval(intervalId);
+                        currentButton.append(`<h1>Incorrect the answer was ${userChoice[0]}</h1>`)
                     }
                     if (userChoice[0] === compChoice[0].A) {
                         wins++
                         clearInterval(intervalId);
+                        currentButton.append(`<h1>Correct</h1>`)
                     }
                     if (number === 0) {
                         clearInterval(intervalId);
+                        $("#answers").append(`<h1>Incorrect the answer was ${userChoice[0]}</h1>`)
                     }
-                    clearInterval(intervalId);
+                    setTimeout(showScore, 3000)
+                    // clearInterval(intervalId);
+                    // $("#counter").html('')
+                    // $("#answers").html('')
+                    // $("#question").html('')
+                    // console.log(wins)
+                    // console.log(losses)
+                    // $("#Score").html(`<h2> you answered ${wins} correct and ${losses} incorrect</h2>`)
+                    // $("#start").attr({ disabled: false, class: "restart" })
+                    // $("#start").html("restart").show();
+                    break
+                }
+            }
+
+            function showScore(){
+                clearInterval(intervalId);
                     $("#counter").html('')
                     $("#answers").html('')
                     $("#question").html('')
@@ -182,8 +202,6 @@
                     $("#Score").html(`<h2> you answered ${wins} correct and ${losses} incorrect</h2>`)
                     $("#start").attr({ disabled: false, class: "restart" })
                     $("#start").html("restart").show();
-                    break
-                }
             }
 
         </script>
