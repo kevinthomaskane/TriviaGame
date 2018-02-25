@@ -1,3 +1,4 @@
+
 var questions =
             [{ Q: "What color is the sky?", options: ["Red", "Blue", "Green", "Blue"], A: "Blue" }, { Q: "Spinach is high in which mineral?", options: ["Fiber", "Potassium", "Iron", "Calcium"], A: "Iron" }, { Q: "Who was the first president of the US?", options: ["George Washington", "Thomas Jefferson", "Abe Lincoln", "James Madison"], A: "George Washington" }, { Q: "Which fictional city is the home of Batman?", options: ["Grantham City", "Washington DC", "NYC", "Gotham City"], A: "Gotham City" }, { Q: "Which type of dog has breeds called Scottish, Welsh and Irish?", options: ["Rotweiler", "Terrier", "Poodle", "German Shephard"], A: "Terrier" }, { Q: "Babe Ruth is associated with which sport?", options: ["Baseball", "Basketball", "Football", "Hockey"], A: "Baseball" }]
         var compChoice = [];
