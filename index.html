@@ -16,11 +16,16 @@
         * {
             text-align: center;
         }
-
+       h1 {
+            opacity: 1;
+        }
         body {
             background-image: url("https://i.ytimg.com/vi/3hGK4MJrKys/maxresdefault.jpg");
         }
-
+        button{
+            max-width: 50%;
+            
+        }
         h2 {
             color: green;
         }
@@ -33,11 +38,11 @@
 
 
 <body>
-    <div class="container"></div>
+    <div class="container">
     <h1>
         Trivia
     </h1>
-    <button id="start">Start</button>
+    <button id="start" type="button" class="btn btn-success">Start</button>
     <div id="counter">
 
     </div>
@@ -51,10 +56,8 @@
     </div>
 
 
-    <div id="incorrectLetters" style="color: red">
-        </h3>
-    </div>
 
+</div>
     <script>
         var questions =
             [{ Q: "What color is the sky?", options: ["Red", "Blue", "Green", "Blue"], A: "Blue" }, { Q: "Spinach is high in which mineral?", options: ["Fiber", "Potassium", "Iron", "Calcium"], A: "Iron" }, { Q: "Who was the first president of the US?", options: ["George Washington", "Thomas Jefferson", "Abe Lincoln", "James Madison"], A: "George Washington" }, { Q: "Which fictional city is the home of Batman?", options: ["Grantham City", "Washington DC", "NYC", "Gotham City"], A: "Gotham City" }, { Q: "Which type of dog has breeds called Scottish, Welsh and Irish?", options: ["Rotweiler", "Terrier", "Poodle", "German Shephard"], A: "Terrier" }, { Q: "Babe Ruth is associated with which sport?", options: ["Baseball", "Basketball", "Football", "Hockey"], A: "Baseball" }]
@@ -106,7 +109,7 @@
                 console.log(losses)
                 stop();
                 $("button").attr("disabled", true)
-                $("#answers").append(`<h1>The answer was ${compChoice[0].A}</h1>`)
+                $("#answers").append(`<h3>The answer was ${compChoice[0].A}</h3>`)
                 setTimeout(nextQuestion, 3000);
             }
             if (number === 0 && runs === 3) {
@@ -165,30 +168,31 @@
             if (userChoice[0] === compChoice[0].A && runs < 3) {
                 wins++
                 clearInterval(intervalId);
-                currentButton.append(`<h1>Correct</h1>`)
+                currentButton.append(`<h3 class="bg-success">Correct</h3>`)
                 setTimeout(nextQuestion, 3000);
             }
             if (userChoice[0] !== compChoice[0].A && runs < 3) {
                 losses++
                 clearInterval(intervalId);
-                currentButton.append(`<h1>Incorrect the answer was ${compChoice[0].A}</h1>`)
+                currentButton.append(`<h3 class="bg-danger">Incorrect the answer was ${compChoice[0].A}</h3>`)
                 setTimeout(nextQuestion, 3000);
             }
             while (runs === 3) {
                 if (userChoice[0] !== compChoice[0].A && number !== 0) {
                     losses++
                     clearInterval(intervalId);
-                    currentButton.append(`<h1>Incorrect the answer was ${compChoice[0].A}</h1>`)
+                    currentButton.append(`<h3 class="bg-danger">Incorrect the answer was ${compChoice[0].A}</h3>`)
                 }
                 if (userChoice[0] === compChoice[0].A) {
                     wins++
                     clearInterval(intervalId);
-                    currentButton.append(`<h1>Correct</h1>`)
+                    
+                    currentButton.append(`<h3 class="bg-success">Correct</h3>`)
                 }
                 if (number === 0) {
                     losses++
                     clearInterval(intervalId);
-                    $("#answers").append(`<h1>The answer was ${compChoice[0].A}</h1>`)
+                    $("#answers").append(`<h3 class="bg-danger">The answer was ${compChoice[0].A}</h3>`)
                     $("button").attr("disabled", true)
                 }
                 setTimeout(showScore, 3000)
@@ -204,7 +208,7 @@
             console.log(wins)
             console.log(losses)
             $("#Score").html(`<h2> you answered ${wins} correct and ${losses} incorrect</h2>`)
-            $("#start").attr({ disabled: false, class: "restart" })
+            $("#start").attr({ disabled: false, class: "restart btn btn-success" })
             $("#start").html("restart").show();
         }
 
